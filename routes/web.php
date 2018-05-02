@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::resource('/dashboard/students', 'Dashboard\StudentController')->names('dashboard.students');
 Route::resource('/dashboard/courses', 'Dashboard\CourseController')->names('dashboard.courses');
+Route::get('/dashboard/courses/{course}/deletion-confirmation', 'Dashboard\CourseController@confirmDestroying')->name('dashboard.courses.deletion-confirmation'); // Test-drives providing parameters to a specific controller action.
 Route::get('/dashboard/assign-courses', 'Dashboard\AssignCoursesController@index')->name('dashboard.assign-courses');

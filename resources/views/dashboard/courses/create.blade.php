@@ -1,13 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
-
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Add a New Course</div>
-
         <div class="panel-body">
           @if (session('status'))
           <div class="alert alert-success">
@@ -23,7 +20,7 @@
             </ul>
           </div>
           @endif
-          <form class="form-horizontal" action="{{ route('dashboard.courses.store') }}" method="POST">
+          <form action="{{ route('dashboard.courses.store') }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <div class="form-group">
               <label for="courseCode" class="col-sm-2 control-label">Course Code *</label>
@@ -49,9 +46,10 @@
                 <input type="text" class="form-control" name="coursePoints" id="coursePoints" placeholder="Course Points *" value="{{ old('coursePoints') }}">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group buttons">
               <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary">Add</button>
+                <a href="{{ route('dashboard.courses.index') }}" class="btn btn-default">Cancel</a>
               </div>
             </div>
           </form>
@@ -61,3 +59,9 @@
   </div>
 </div>
 @endsection
+@push('footer_scripts')
+<script src="//cdn.ckeditor.com/4.9.2/full-all/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace('courseDescription');
+</script>
+@endpush

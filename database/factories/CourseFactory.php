@@ -8,6 +8,6 @@ $factory->define(App\Course::class, function (Faker $faker) {
       'courseName' => rtrim(ucwords($faker->sentence(2)), '.'),
       'courseDescription' => '<p>' . implode('</p><p>', $faker->paragraphs(3)) . '</p>',
       'coursePoints' => $faker->randomElement(array(10, 15)),
-      'status' => $faker->numberBetween(1, 3),
+      'status' => $faker->numberBetween(0, 3),
   ];
 });

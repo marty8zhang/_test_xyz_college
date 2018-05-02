@@ -32,6 +32,7 @@ class CreateCoursesTable extends Migration {
               ->nullable(FALSE);
       // And more...
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
