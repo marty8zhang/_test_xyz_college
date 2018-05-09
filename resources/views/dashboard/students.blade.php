@@ -1,19 +1,23 @@
+@php
+/**
+* The VIEW for displaying the student list in the Dashboard.
+* @author Marty Zhang
+* @version 0.9.201805041109
+*/
+@endphp
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Students <span class="pull-right">Showing {{ $students->perPage() * ($students->currentPage() - 1) + 1 }}-{{ $students->perPage() * $students->currentPage() }} of {{ $students->total() }}</span></div>
-
         <div class="panel-body">
           @if (session('status'))
           <div class="alert alert-success">
             {{ session('status') }}
           </div>
           @endif
-
           <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
               <thead>
@@ -44,7 +48,6 @@
               </tbody>
             </table>
           </div>
-
           {{ $students->links() }}
         </div>
       </div>

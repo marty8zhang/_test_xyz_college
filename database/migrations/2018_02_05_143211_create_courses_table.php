@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * The Migration for the courses MODEL.
+ * @author Marty Zhang
+ * @version 0.9.201805031622
+ */
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

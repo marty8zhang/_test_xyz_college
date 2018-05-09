@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Modified by Marty.
+ * @version 0.9
+ */
 return [
     /*
       |--------------------------------------------------------------------------
@@ -86,6 +90,8 @@ return [
     'unique' => 'The :attribute has already been taken.',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
+    // Error messages for custom rules.
+    'uniqueMultipleFields' => 'The set of values for the :uniqueFields fields has already been taken.',
     /*
       |--------------------------------------------------------------------------
       | Custom Validation Language Lines
@@ -116,5 +122,9 @@ return [
         'courseName' => 'Course Name',
         'courseDescription' => 'Course Description',
         'coursePoints' => 'Course Points',
+        'sId' => 'Student Record Id',
+        'cId' => 'Course Record Id',
+        'enrollment-year' => 'Year',
+        'enrollment-semester' => 'Semester',
     ],
 ];

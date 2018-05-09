@@ -1,3 +1,10 @@
+@php
+/**
+* The VIEW of the layout of the Dashboard.
+* @author Marty Zhang
+* @version 0.9.201805080952
+*/
+@endphp
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
   <head>
@@ -34,6 +41,7 @@
             <ul class="nav navbar-nav">
               <li><a href="{{ route('dashboard.students.index') }}">Students</a></li>
               <li><a href="{{ route('dashboard.courses.index') }}">Courses</a></li>
+              <li><a href="{{ route('dashboard.students-courses-enrollment.index') }}">Students & Courses Enrollment</a></li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">

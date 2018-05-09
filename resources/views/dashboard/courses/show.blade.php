@@ -1,3 +1,10 @@
+@php
+/**
+* The VIEW for displaying a course's details in the Dashboard.
+* @author Marty Zhang
+* @version 0.9.201805081134
+*/
+@endphp
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -46,7 +53,9 @@
           <div class="text-center buttons">
             <a href="{{ route('dashboard.courses.edit', ['course' => $course->courseCode]) }}" class="btn btn-default">Edit</a>
             <a href="{{ route('dashboard.courses.deletion-confirmation', ['course' => $course->courseCode]) }}" class="btn btn-danger">Delete</a>
-            <a href="{{ route('dashboard.courses.index') }}" class="btn btn-primary">Back to the List</a>
+            <a href="{{ route('dashboard.students-courses-enrollment.index', ['cc' => $course->courseCode]) }}" class="btn btn-default">Students Enrollment List</a>
+            <a href="{{ route('dashboard.courses.index') }}" class="btn btn-default">Courses List</a>
+            <a href="javascript: window.history.back();" class="btn btn-primary">Go Back</a>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The CONTROLLER for the Course model in the Dashboard.
+ * The CONTROLLER for the Course MODEL in the Dashboard.
  * @author Marty Zhang
  * @version 0.9.201805021209
  */

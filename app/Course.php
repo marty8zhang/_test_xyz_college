@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * The MODEL of courses.
+ * @author Marty Zhang
+ * @version 0.9.201805071048
+ */
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -34,11 +40,22 @@ class Course extends Model {
   protected $dates = ['deleted_at'];
 
   /**
+   * Gets the students that have/were enrolled into the course.
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+   */
+  public function students() {
+    return $this->belongsToMany('App\Student', 'students_courses', 'cId', 'sId', 'id', 'id') // Development Note: The last 4 parameters are necessary because the foreign key constraints in the actual relationship database table are not referencing the primary key fields of the Models, which violates the default values of belongsToMany().
+                    ->withPivot('id', 'semester', 'status')
+                    ->withTimestamps()
+                    ->using('App\StudentsCourses');
+  }
+
+  /**
    * Checks if the given status is an acceptable value.
    * @param integer $status The course status.
    * @return boolean TRUE is the given status is an acceptable value; or FALSE otherwise.
    */
-  static public function isStatusValid($status) {
+  public static function isStatusValid($status) {
     return in_array($status, [
         self::STATUS_INACTIVE,
         self::STATUS_ACTIVE,
