@@ -3,7 +3,7 @@
 * The VIEW for displaying the create form of a student & course enrollment entry in the Dashboard.
 * @author Marty Zhang
 * @createdAt 12:34 PM AEST, 8 May 2018
-* @version 0.9.201805071726
+* @version 0.9.201805092305
 */
 @endphp
 @extends('layouts.app')
@@ -31,9 +31,9 @@
           <form action="{{ route('dashboard.students-courses-enrollment.store') }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <div class="form-group">
-              <label class="col-sm-2 control-label">Student</label>
+              <label for="student-id" class="col-sm-2 control-label">Student</label>
               <div class="col-sm-10">
-                <select class="form-control" name="sId" id="sId">
+                <select class="form-control" name="sId" id="student-id">
                   <option value="">- Please Select a Student -</option>
                   @foreach ($students as $s)
                   <option value="{{ $s->id }}"{{ old('sId') == $s->id || old('sId') === NULL && $student && $s->id == $student->id ? ' selected' : '' }}>{{ $s->lastName . ', ' . $s->middleName . ' ' . $s->firstName . ' - ' . $s->studentId }}</option>
@@ -42,9 +42,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="cId" class="col-sm-2 control-label">Course</label>
+              <label for="course-id" class="col-sm-2 control-label">Course</label>
               <div class="col-sm-10">
-                <select class="form-control" name="cId" id="cId">
+                <select class="form-control" name="cId" id="course-id">
                   <option value="">- Please Select a Course -</option>
                   @foreach ($courses as $c)
                   <option value="{{ $c->id }}"{{ old('cId') == $c->id || old('cId') === NULL && $course && $c->id == $course->id ? ' selected' : '' }}>{{ $c->courseCode . ' - ' . $c->courseName }}</option>
@@ -55,21 +55,21 @@
             <div class="form-group">
               <label for="enrollment-year" class="col-sm-2 col-xs-6 control-label">Year</label>
               <div class="col-sm-4 col-xs-6">
-                <select class="form-control" name="enrollment-year" id="enrollment-year">
+                <select class="form-control" name="enrollmentYear" id="enrollment-year">
                   <option value="">- Please Select -</option>
                   @for ($i = 0; $i < 5; $i++)
-                  <option value="{{ date('Y') + $i }}"{{ old('enrollment-year') == date('Y') + $i ? ' selected' : '' }}>{{ date('Y') + $i }}</option>
+                  <option value="{{ date('Y') + $i }}"{{ old('enrollmentYear') == date('Y') + $i ? ' selected' : '' }}>{{ date('Y') + $i }}</option>
                   @endfor
                 </select>
               </div>
               <label for="enrollment-semester" class="col-sm-2 col-xs-6 control-label">Semester</label>
               <div class="col-sm-4 col-xs-6">
-                <select class="form-control" name="enrollment-semester" id="enrollment-semester">
+                <select class="form-control" name="enrollmentSemester" id="enrollment-semester">
                   <option value="">- Please Select -</option>
-                  <option value="1"{{ old('enrollment-semester') == 1 ? ' selected' : '' }}>Semester 1</option>
-                  <option value="2"{{ old('enrollment-semester') == 2 ? ' selected' : '' }}>Summer School</option>
-                  <option value="3"{{ old('enrollment-semester') == 3 ? ' selected' : '' }}>Semester 2</option>
-                  <option value="4"{{ old('enrollment-semester') == 4 ? ' selected' : '' }}>Winter School</option>
+                  <option value="1"{{ old('enrollmentSemester') == 1 ? ' selected' : '' }}>Semester 1</option>
+                  <option value="2"{{ old('enrollmentSemester') == 2 ? ' selected' : '' }}>Summer School</option>
+                  <option value="3"{{ old('enrollmentSemester') == 3 ? ' selected' : '' }}>Semester 2</option>
+                  <option value="4"{{ old('enrollmentSemester') == 4 ? ' selected' : '' }}>Winter School</option>
                 </select>
               </div>
             </div>

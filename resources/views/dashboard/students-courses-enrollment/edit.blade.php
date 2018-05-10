@@ -3,8 +3,11 @@
 * The VIEW for displaying the edit form of a student & course enrollment entry in the Dashboard.
 * @author Marty Zhang
 * @createdAt 11:07 AM AEST, 7 May 2018
-* @version 0.9.201805081519
+* @version 0.9.201805091426
 */
+@endphp
+@php
+use App\StudentsCourses;
 @endphp
 @extends('layouts.app')
 @section('content')
@@ -46,7 +49,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Semester</label>
               <div class="col-sm-10">
-                <input type='text' value="{{ $enrollmentEntry->semester }}" class="form-control" readonly>
+                <input type='text' value="{{ StudentsCourses::getSemesterText($enrollmentEntry->semester) }}" class="form-control" readonly>
               </div>
             </div>
             <div class="form-group">

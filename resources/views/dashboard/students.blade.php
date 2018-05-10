@@ -2,7 +2,7 @@
 /**
 * The VIEW for displaying the student list in the Dashboard.
 * @author Marty Zhang
-* @version 0.9.201805041109
+* @version 0.9.201805092148
 */
 @endphp
 @extends('layouts.app')
@@ -18,19 +18,37 @@
             {{ session('status') }}
           </div>
           @endif
+          <div class="text-center pagination-wrapper">
+            {{ $students->links() }}
+          </div>
           <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
               <thead>
-              <th>Id</th>
-              <th>Student Id</th>
-              <th>Full Name</th>
-              <th>Birthday</th>
-              <th>Home Address</th>
-              <th>Contact Number</th>
-              <th>Student Email Address</th>
-              <th>Personal Email Address</th>
-              <th>Status</th>
+                <tr>
+                  <th>Id</th>
+                  <th>Student Id</th>
+                  <th>Full Name</th>
+                  <th>Birthday</th>
+                  <th>Home Address</th>
+                  <th>Contact Number</th>
+                  <th>Student Email Address</th>
+                  <th>Personal Email Address</th>
+                  <th>Status</th>
+                </tr>
               </thead>
+              <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>Student Id</th>
+                  <th>Full Name</th>
+                  <th>Birthday</th>
+                  <th>Home Address</th>
+                  <th>Contact Number</th>
+                  <th>Student Email Address</th>
+                  <th>Personal Email Address</th>
+                  <th>Status</th>
+                </tr>
+              </tfoot>
               <tbody>
                 @foreach ($students as $student)
                 <tr>
@@ -42,13 +60,15 @@
                   <td>{{ $student->contactNumber }}</td>
                   <td>{{ $student->studentEmailAddress }}</td>
                   <td>{{ $student->personalEmailAddress }}</td>
-                  <td>{{ $student->status }}</td>
+                  <td>{{ $student->getStatusText() }}</td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
           </div>
-          {{ $students->links() }}
+          <div class="text-center pagination-wrapper">
+            {{ $students->links() }}
+          </div>
         </div>
       </div>
     </div>

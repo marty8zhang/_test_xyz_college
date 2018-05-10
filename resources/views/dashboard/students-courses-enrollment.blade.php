@@ -3,12 +3,13 @@
 * The VIEW for displaying the students and courses enrollment list in the Dashboard.
 * @author Marty Zhang
 * @createdAt 3 May 2018, 2:57 PM AEST
-* @version 0.9.201805090955
+* @version 0.9.201805091425
 */
 @endphp
 @php
 use App\Student;
 use App\Course;
+use App\StudentsCourses;
 
 $isStudentActive = NULL;
 if (app('request')->input('si')) {
@@ -141,8 +142,8 @@ $enrollmentEntries->render();
                   <td><a href="{{ route('dashboard.students.show', ['student' => $ee['student']->studentId]) }}" title="View Student Details">{{ $ee['student']->studentId }}</a></td>
                   <td>{{ $ee['student']->lastName }}, {{ $ee['student']->firstName }} {{ $ee['student']->middleName }}</td>
                   <td>{{ $ee['student']->getStatusText() }}</td>
-                  <td>{{ $ee['student']->pivot->semester }}</td>
-                  <td><a href="{{ route('dashboard.students-courses-enrollment.edit', ['enrollmentEntry' => $ee['student']->pivot->id]) }}" title="Change the Status of the Student & Course Enrollment Entry">{{ App\StudentsCourses::getStatusText($ee['student']->pivot->status) }}</a></td>
+                  <td>{{ StudentsCourses::getSemesterText($ee['student']->pivot->semester) }}</td>
+                  <td><a href="{{ route('dashboard.students-courses-enrollment.edit', ['enrollmentEntry' => $ee['student']->pivot->id]) }}" title="Change the Status of the Student & Course Enrollment Entry">{{ StudentsCourses::getStatusText($ee['student']->pivot->status) }}</a></td>
                 </tr>
                 @endforeach
                 @else

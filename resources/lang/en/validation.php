@@ -2,7 +2,7 @@
 
 /**
  * @author Modified by Marty.
- * @version 0.9
+ * @version 0.9.201805101127
  */
 return [
     /*
@@ -91,7 +91,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     // Error messages for custom rules.
-    'uniqueMultipleFields' => 'The set of values for the :uniqueFields fields has already been taken.',
+    'unique_multiple_fields' => 'The set of values for the :uniqueFields fields has already been taken.',
     /*
       |--------------------------------------------------------------------------
       | Custom Validation Language Lines
@@ -105,6 +105,15 @@ return [
     'custom' => [
         'coursePoints' => [
             'in' => 'The Course Points can only be a value among 5, 10, or 15.',
+        ],
+        'sId' => [
+            'unique_multiple_fields' => 'There is already a record for this student related the same course in the same semester. If you\'d like to update the enrollment status of this record, please do it through the Students & Courses Enrollment list.',
+        ],
+        'cId' => [
+            'unique_multiple_fields' => 'There is already a record for this student related the same course in the same semester. If you\'d like to update the enrollment status of this record, please do it through the Students & Courses Enrollment list.',
+        ],
+        'semester' => [
+            'unique_multiple_fields' => 'There is already a record for this student related the same course in the same semester. If you\'d like to update the enrollment status of this record, please do it through the Students & Courses Enrollment list.',
         ],
     ],
     /*

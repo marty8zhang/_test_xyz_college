@@ -4,7 +4,7 @@
  * The CONTROLLER for the students and courses enrollment MODEL in the Dashboard.
  * @author Marty Zhang
  * @createdAt 3 May 2018, 2:28 PM AEST
- * @version 0.9.201805091113
+ * @version 0.9.201805101140
  */
 
 namespace App\Http\Controllers\Dashboard;
@@ -144,11 +144,22 @@ class StudentsCoursesController extends Controller {
    */
   public function store(Request $request) {
     $this->validate($request, [
-        'enrollment-year' => 'bail|required|integer|between:' . date('Y') . ',' . (date('Y') + 1),
-        'enrollment-semester' => 'bail|required|integer|between:1,4',
+        'enrollmentYear' => 'bail|required|integer|between:' . date('Y') . ',' . (date('Y') + 1),
+        'enrollmentSemester' => 'bail|required|integer|between:1,4',
         'sId' => 'bail|required|integer|exists:students,id',
-        'cId' => 'bail|required|integer|exists:courses,id|uniqueMultipleFields:students_courses,cId,sId,' . $request->sId . ',' . 'semester,' . ($semester = $request->enrollmentYear . str_pad($request->enrollmentSemester, 2, '0', STR_PAD_LEFT)),
+        'cId' => 'bail|required|integer|exists:courses,id|unique_multiple_fields:students_courses,cId,sId,' . $request->sId . ',' . 'semester,' . ($semester = $request->enrollmentYear . str_pad($request->enrollmentSemester, 2, '0', STR_PAD_LEFT)),
     ]);
+
+    $enrollmentEntry = new StudentsCourses([
+        'sId' => $request->sId,
+        'cId' => $request->cId,
+        'semester' => $semester,
+    ]);
+    $enrollmentEntry->save();
+
+    $student = Student::where('id', $request->sId)->first();
+    $course = Course::where('id', $request->cId)->first();
+    return redirect()->route('dashboard.students-courses-enrollment.index')->with('status', "The student (Student Id: {$student->studentId}) has been enrolled in the \"{$course->courseCode} - {$course->courseName}\" course for " . StudentsCourses::getSemesterText($semester) . ".");
   }
 
   /**
@@ -193,12 +204,11 @@ class StudentsCoursesController extends Controller {
 //    $student->courses()->updateExistingPivot($course->id, [
 //        'status' => $request->status,
 //    ]);
-    // Development Note: The above way to update a record of this particular relationship is wrong, since it doesn't take the unique key constraint - which is on three table fields: sId, cId & semester - into account at all.
-    // To-do. The save() method of the Model has to be overridden first to prevent an exception being thrown.
-//    $enrollmentEntry->status = $request->status;
-//    $enrollmentEntry->save();
+    // Development Note: The above way to update a record of this particular relationship is wrong, since it might update more than one record in the pivot table instead of the specific one that's already given via $enrollmentEntry.
+    $enrollmentEntry->status = $request->status;
+    $enrollmentEntry->save(); // Development Note: This won't work unless the problematic inherited methods concerning $this->pivotParent have been overridden.
 
-    return redirect()->route('dashboard.students-courses-enrollment.index')->with('status', "The student's (Student Id: {$student->studentId}) enrollment status of the \"{$course->courseCode} - {$course->courseName}\" course has been successfully updated.");
+    return redirect()->route('dashboard.students-courses-enrollment.index')->with('status', "The student's (Student Id: {$student->studentId}) enrollment status of the \"{$course->courseCode} - {$course->courseName}\" course for " . StudentsCourses::getSemesterText($enrollmentEntry->semester) . " has been successfully updated.");
   }
 
   /**
