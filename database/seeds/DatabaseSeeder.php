@@ -25,10 +25,8 @@ class DatabaseSeeder extends Seeder {
 
     factory(App\Course::class, 50)->create();
 
-    // Development Note: Because of the unique key constraint on the sId, cId and semester, this Factory might encounter an SQL error when executing. Usually try to execute it few more times will get you a good result, or otherwise you can comment out the above two Factories and fall back to Method 2 in StudentsCoursesFactory.
+    // Development Note: Because of the unique key constraint on the sId, cId and semester, this Factory might encounter an SQL error when executing. Usually try to execute it one or two more times will get you a good result, or otherwise you can comment out the above two Factories and fall back to Method 2 in StudentsCoursesFactory.
     factory(App\StudentsCourses::class, 500)->create();
-
-    factory(App\Test::class, 50)->create();
   }
 
 }
