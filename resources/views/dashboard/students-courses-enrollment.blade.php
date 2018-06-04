@@ -3,7 +3,7 @@
 * The VIEW for displaying the students and courses enrollment list in the Dashboard.
 * @author Marty Zhang
 * @createdAt 3 May 2018, 2:57 PM AEST
-* @version 0.9.201805091425
+* @version 0.9.201806041730
 */
 @endphp
 @php
@@ -49,7 +49,7 @@ $enrollmentEntries->render();
           <div class="row">
             <div class="col-sm-7 text-center-xs mb24">
               @if (app('request')->input('si'))
-              <button data-href="{{ route('dashboard.students-courses-enrollment.create', ['si' => app('request')->input('si')]) }}" class="btn btn-default btn-redirect"{{ $isStudentActive ? '' : ' disabled' }}{!! $isStudentActive ? '' : ' data-toggle="tooltip" data-placement="bottom" title="This student isn\'t currently enrolled to the school yet."' !!}>Enroll in a Course</button>
+              <button data-href="{{ route('dashboard.students-courses-enrollment.create', ['si' => app('request')->input('si')]) }}" class="btn btn-default btn-redirect"{{ $isStudentActive ? '' : ' disabled' }}{!! $isStudentActive ? '' : ' data-toggle="tooltip" data-placement="bottom" title="This student isn\'t currently enrolled to the college yet."' !!}>Enroll in a Course</button>
               @elseif (app('request')->input('cc'))
               <button data-href="{{ route('dashboard.students-courses-enrollment.create', ['cc' => app('request')->input('cc')]) }}" class="btn btn-default btn-redirect"{{ $isCourseActive ? '' : ' disabled' }}{!! $isCourseActive ? '' : ' data-toggle="tooltip" data-placement="bottom" title="This course isn\'t currently active yet."' !!}>Enroll a Student</button>
               @else
