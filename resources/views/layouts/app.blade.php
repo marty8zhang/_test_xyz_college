@@ -15,8 +15,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/additions.css') }}" rel="stylesheet">
+    <link href="{{ mix((App::environment('demo') ? '/xyz-college' : '') . '/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix((App::environment('demo') ? '/xyz-college' : '') . '/css/additions.css') }}" rel="stylesheet">
     @stack('header_stylesheets')
   </head>
   <body>
@@ -75,7 +75,7 @@
       @yield('content')
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset((App::environment('demo') ? '/xyz-college' : '') . '/js/app.js') }}"></script>
     @stack('footer_scripts')
   </body>
 </html>

@@ -36,17 +36,8 @@ https://demos.egghdz.org/xyz-college/login
 **Username:** tester
 **Password:** tester
 **Notes:**
-* The database will be refreshed every hour.
-* Please don't spam it. You won't get what you want.
-* There is a known issue with `StudentsCoursesFactory` due to the foreign key constraints of its corresponding database table. So if there is a (very very) slight chance that you see no or very little records on the *Students & Courses Enrollment* page, please try the demo an hour later. Otherwise, please contact me directly so that I can try to manually refresh the database.
-
-## To-do
-* API and Ajax calls on:
-  * searching a course
-  * searching a student
-  * creating a new student and course enrollment entry
-* A chatroom that test-drives the broadcasting functionality.
-* Slack notifications to test-drive the notification related functionality.
+* The database will be refreshed every hour, so please don't waste your time try to spam or vandalise it.
+* There is a known issue with `StudentsCoursesFactory` due to the foreign key constraints of its corresponding database table. If there is a (very) slight chance that you see no or only few records on the *Students & Courses Enrollment* page, please try the demo an hour later. Otherwise, please contact me directly so that I can try to manually refresh the database.
 
 ## Special Thanks
 Many thanks to:
