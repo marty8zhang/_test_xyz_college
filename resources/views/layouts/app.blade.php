@@ -2,7 +2,7 @@
 /**
 * The VIEW of the layout of the Dashboard.
 * @author Marty Zhang
-* @version 0.9.201806041726
+* @version 0.9.201806072029
 */
 @endphp
 <!DOCTYPE html>
@@ -15,8 +15,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
-    <link href="{{ (App::environment('demo') ? '/xyz-college' : '') . mix('/css/app.css') }}" rel="stylesheet">
-    <link href="{{ (App::environment('demo') ? '/xyz-college' : '') . mix('/css/additions.css') }}" rel="stylesheet">
+    <link href="{{ (App::environment('demo') ? env('DEMO_ROOT_URI', '/xyz-college') : '') . mix('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ (App::environment('demo') ? env('DEMO_ROOT_URI', '/xyz-college') : '') . mix('/css/additions.css') }}" rel="stylesheet">
     @stack('header_stylesheets')
   </head>
   <body>
@@ -75,7 +75,7 @@
       @yield('content')
     </div>
     <!-- Scripts -->
-    <script src="{{ (App::environment('demo') ? '/xyz-college' : '') . mix('/js/app.js') }}"></script>
+    <script src="{{ (App::environment('demo') ? env('DEMO_ROOT_URI', '/xyz-college') : '') . mix('/js/app.js') }}"></script>
     @stack('footer_scripts')
   </body>
 </html>

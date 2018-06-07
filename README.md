@@ -1,7 +1,9 @@
 # XYZ School - My Laravel 5 Playground
+
 A simple students and courses enrollment system (not for real-world use) built on top of Laravel 5.5.
 
 ## What Is This?
+
 * My playground to test-drive my knowledge against Laravel 5.
 * My example code for any potential employers to review.
 * Currently this project covers the following aspects of Laravel 5:
@@ -16,13 +18,16 @@ A simple students and courses enrollment system (not for real-world use) built o
   * Etc.
 
 ## What Isn't This?
+
 If you can find any good qualities in terms of the abilities and skills mentioned below out from this project, I'll be much appreciated. However, in general, this project is:
+
 * __NOT__ a showcase of my requirement gathering and analysis abilities.
 * __NOT__ a showcase of my software system design abilities.
 * __NOT__ a showcase of my front-end development skills.
 * __NOT__ a showcase of my UI design abilities.
 
 ## Assumptions
+
 1. First thing first, surely, this project will never meet the requirements of real-world scenarios at many aspects, otherwise I'll be running my own school now. :) Let's say any missing functionality, inconsideration and workflow flaws in this project are by design or merely quick workarounds, unless they are bugs. My focus is only on if a feature is doable or not and how to implement it in Laravel.
 1. The term 'course' here is meant to be a 'unit' or a 'subject' at universities, but not a 'course' for something like Bachelor of Computer Science.
 1. The Students section and the Courses section have nearly identical requirements functionality-wise, hence most of the features for the record listing and management are only implemented to the Courses section.
@@ -32,14 +37,19 @@ If you can find any good qualities in terms of the abilities and skills mentione
 1. If in any doubt, please see the Assumption No. 1 above.
 
 ## Demo
-https://demos.egghdz.org/xyz-college/login
-**Username:** tester
-**Password:** tester
-**Notes:**
+
+__URL:__ https://demos.egghdz.org/xyz-college  
+__Username:__ tester  
+__Password:__ tester
+
+__Notes:__
+
 * The database will be refreshed every hour, so please don't waste your time try to spam or vandalise it.
 * There is a known issue with `StudentsCoursesFactory` due to the foreign key constraints of its corresponding database table. If there is a (very) slight chance that you see no or only few records on the *Students & Courses Enrollment* page, please try the demo an hour later. Otherwise, please contact me directly so that I can try to manually refresh the database.
 
 ## Special Thanks
+
 Many thanks to:
+
 * Anyone who is willing to spare his/her precious time to review this project and/or point out its issues.
 * My wife who allows me to spend so much of my leisure time on this useless (to her) but fun (to me) 'project'.
