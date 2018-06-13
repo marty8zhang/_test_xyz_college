@@ -2,7 +2,7 @@
 /**
 * The VIEW for displaying the course list in the Dashboard.
 * @author Marty Zhang
-* @version 0.9.201805021211
+* @version 0.9.201806091101
 */
 @endphp
 @extends('layouts.app')
@@ -79,6 +79,17 @@ $paginationInformation .= ' of ' . $courses->total();
                   <th>Status</th>
                 </tr>
               </thead>
+              @if (count($courses) >= 20)
+              <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>Course Code</th>
+                  <th>Course Name</th>
+                  <th>Points</th>
+                  <th>Status</th>
+                </tr>
+              </tfoot>
+              @endif
               <tbody>
                 @if (count($courses))
                 @foreach ($courses as $course)

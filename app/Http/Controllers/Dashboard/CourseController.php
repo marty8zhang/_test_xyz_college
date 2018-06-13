@@ -3,7 +3,7 @@
 /**
  * The CONTROLLER for the Course MODEL in the Dashboard.
  * @author Marty Zhang
- * @version 0.9.201805021209
+ * @version 0.9.201806091019
  */
 
 namespace App\Http\Controllers\Dashboard;
@@ -36,34 +36,40 @@ class CourseController extends Controller {
     $keyword = $request->get('q') ?: '';
 
     // Prepares to determine the sorting criteria.
-    $sortingFields = ['status', 'courseCode']; // The default sorting fields.
-    $defaultNumberOfSortingFields = count($sortingFields);
+    $sortingFields = [];
     $sortingOrders = [];
-    $tempSortingOrders = empty($request->get('o')) || !is_array($request->get('o')) ? [] : $request->get('o');
-    // Determines the sorting fields.
-    if (!empty($request->get('s')) || !is_array($request->get('s'))) {
-      $tempSortingFields = $request->get('s');
+    $tempSortingOrders = empty($request->get('o')) ? [] : (is_array($request->get('o')) ? $request->get('o') : [$request->get('o')]);
+    if (!empty($request->get('s'))) {
+      // Determines the sorting fields.
+      $tempSortingFields = is_array($request->get('s')) ? $request->get('s') : [$request->get('s')];
 
       for ($i = 0; $i < min(count($tempSortingFields), count($courseFields)); $i++) { // Also determins the maximum number of times for orderBy() here.
-        if (in_array($tempSortingFields[$i], $courseFields)) {
-          $sortingFields[$i] = $tempSortingFields[$i];
-          if (count($sortingFields) > count(array_unique($sortingFields))) { // It's a duplicate value (field name).
-            unset($tempSortingOrders[$i]); // All duplicate values will be removed after this FOR loop has ended, but first we'll need to remove the corresponding value from the sorting orders array.
+        if (in_array($tempSortingFields[$i], $courseFields)) { // It's a valid field name.
+          if (in_array($tempSortingFields[$i], $sortingFields)) { // It's a duplicate one among existing sorting fields.
+            unset($tempSortingOrders[$i]); // Duplicate field names are ignored, and hence their corresponding sorting orders should be removed too.
+          } else {
+            $sortingFields[] = $tempSortingFields[$i];
           }
-        } else if ($i >= $defaultNumberOfSortingFields) {
-          break; // Invalid field names, which are out of the default sorting field range, are not allowed and the rest of the given sorting fields will be ignored.
+        } else {
+          unset($tempSortingOrders[$i]); // Invalid field names are ignored, and hence their corresponding sorting orders should be removed too.
         }
       }
 
-      $sortingFields = array_unique($sortingFields); // Removes all duplicate values.
-    }
-    // Determines the sorting orders.
-    for ($i = 0; $i < count($sortingFields); $i++) { // Makes sure the sizes of sorting fields and orders are the same by using the size of $sortingFields instead of $tempSortingOrders here.
-      if (empty($tempSortingOrders[$i]) || !in_array(strtoupper($tempSortingOrders[$i]), ['ASC', 'DESC'])) {
-        $sortingOrders[$i] = 'ASC'; // The default sorting order.
-      } else {
-        $sortingOrders[$i] = strtoupper($tempSortingOrders[$i]); // Development Note: Use strtoupper() for easy comparison to determine sortBy() or sortByDesc() below.
+      // Determines the sorting orders.
+      // Resets the indexes of sorting orders first since some of them might have been unset.
+      $tempSortingOrders = array_values($tempSortingOrders);
+      for ($i = 0; $i < count($sortingFields); $i++) { // Makes sure the sizes of sorting fields and orders are the same by using the size of $sortingFields instead of $tempSortingOrders here.
+        if (empty($tempSortingOrders[$i]) || !in_array(strtoupper($tempSortingOrders[$i]), ['ASC', 'DESC'])) {
+          $sortingOrders[$i] = 'ASC'; // The default sorting order.
+        } else {
+          $sortingOrders[$i] = strtoupper($tempSortingOrders[$i]); // Development Note: Use strtoupper() for easy comparison to determine sortBy() or sortByDesc() below.
+        }
       }
+    }
+    // Sets the default sorting criteria if necessary.
+    if (empty($sortingFields)) {
+      $sortingFields = ['status', 'courseCode'];
+      $sortingOrders = ['ASC', 'ASC'];
     }
 
     // Queries all courses based on the given query conditions.

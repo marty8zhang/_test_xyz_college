@@ -131,9 +131,10 @@ return [
         'courseName' => 'Course Name',
         'courseDescription' => 'Course Description',
         'coursePoints' => 'Course Points',
+        'status' => 'Status',
         'sId' => 'Student Record Id',
         'cId' => 'Course Record Id',
-        'enrollment-year' => 'Year',
-        'enrollment-semester' => 'Semester',
+        'enrollmentYear' => 'Year',
+        'enrollmentSemester' => 'Semester',
     ],
 ];

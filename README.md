@@ -1,6 +1,6 @@
 # XYZ School - My Laravel 5 Playground
 
-A simple students and courses enrollment system (not for real-world use) built on top of Laravel 5.5.
+A simple students and courses enrollment system (not for real-world use) built on top of Laravel 5.6.
 
 ## What Is This?
 
@@ -15,6 +15,7 @@ A simple students and courses enrollment system (not for real-world use) built o
   * Database Migrations
   * Eloquent models: Record listing/creation/updating/deletion, soft deletion and relationships
   * Seeding & Eloquent model factories
+  * PHPUnit tests.
   * Etc.
 
 ## What Isn't This?

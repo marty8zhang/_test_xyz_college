@@ -3,7 +3,7 @@
 /**
  * The Factory for generating dummy data for the students and courses enrollment MODEL.
  * @author Marty Zhang
- * @version 0.9.201805032220
+ * @version 0.9.201806140453
  */
 use Faker\Generator as Faker;
 
@@ -17,7 +17,7 @@ $factory->define(App\StudentsCourses::class, function (Faker $faker) {
         return App\Course::inRandomOrder()->first()->id; // Method 1: See above.
 //        return factory(App\Course::class)->create()->id; // Method 2: See above.
       },
-      'semester' => '20' . $faker->numberBetween(10, 18) . '0' . $faker->numberBetween(1, 4),
+      'semester' => $faker->numberBetween(date('Y') - 17, date('Y') + 2) . '0' . $faker->numberBetween(1, 4),
       'status' => $faker->numberBetween(0, 3),
   ];
 });

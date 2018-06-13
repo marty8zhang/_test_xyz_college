@@ -3,7 +3,7 @@
 * The VIEW for displaying the students and courses enrollment list in the Dashboard.
 * @author Marty Zhang
 * @createdAt 3 May 2018, 2:57 PM AEST
-* @version 0.9.201806041730
+* @version 0.9.201806091101
 */
 @endphp
 @php
@@ -111,6 +111,7 @@ $enrollmentEntries->render();
                   <th>Enrolled Status</th>
                 </tr>
               </thead>
+              @if (count($enrollmentEntries) >= 20)
               <tfoot>
                 <tr>
                   <th>Course Status</th>
@@ -121,6 +122,7 @@ $enrollmentEntries->render();
                   <th>Enrolled Status</th>
                 </tr>
               </tfoot>
+              @endif
               <tbody>
                 @if (count($enrollmentEntries))
                 @php

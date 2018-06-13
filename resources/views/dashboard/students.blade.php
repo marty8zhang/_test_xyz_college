@@ -2,7 +2,7 @@
 /**
 * The VIEW for displaying the student list in the Dashboard.
 * @author Marty Zhang
-* @version 0.9.201805092148
+* @version 0.9.201806091101
 */
 @endphp
 @extends('layouts.app')
@@ -36,6 +36,7 @@
                   <th>Status</th>
                 </tr>
               </thead>
+              @if (count($students) >= 20)
               <tfoot>
                 <tr>
                   <th>Id</th>
@@ -49,7 +50,9 @@
                   <th>Status</th>
                 </tr>
               </tfoot>
+              @endif
               <tbody>
+                @if (count($students))
                 @foreach ($students as $student)
                 <tr>
                   <td>{{ $student->id }}</td>
@@ -63,6 +66,11 @@
                   <td>{{ $student->getStatusText() }}</td>
                 </tr>
                 @endforeach
+                @else
+                <tr>
+                  <td colspan="9" class="text-center text-warning"><em>No students have been found.</em></td>
+                </tr>
+                @endif
               </tbody>
             </table>
           </div>

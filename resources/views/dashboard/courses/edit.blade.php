@@ -2,7 +2,7 @@
 /**
 * The VIEW for displaying the edit form of a course in the Dashboard.
 * @author Marty Zhang
-* @version 0.9.201805071110
+* @version 0.9.201806121627
 */
 @endphp
 @extends('layouts.app')
@@ -43,9 +43,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="courseDescription" class="col-sm-2 control-label">Course Description *</label>
+              <label for="courseDescription" class="col-sm-2 control-label">Course Description</label>
               <div class="col-sm-10">
-                <textarea class="form-control" name="courseDescription" id="courseDescription" placeholder="Course Description *">{{ old('courseDescription') === NULL ? $course->courseDescription : old('courseDescription') }}</textarea>
+                <textarea class="form-control" name="courseDescription" id="courseDescription" placeholder="Course Description">{{ old('courseDescription') === NULL ? $course->courseDescription : old('courseDescription') }}</textarea>
               </div>
             </div>
             <div class="form-group">
@@ -81,6 +81,6 @@
 @push('footer_scripts')
 <script src="//cdn.ckeditor.com/4.9.2/full-all/ckeditor.js"></script>
 <script>
-  CKEDITOR.replace('courseDescription');
+CKEDITOR.replace('courseDescription');
 </script>
 @endpush
