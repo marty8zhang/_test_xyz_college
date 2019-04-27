@@ -27,8 +27,7 @@
 .sorting-condition .remove-sorting-condition {
   visibility: visible;
 }
-.sorting-condition:first-of-type .remove-sorting-condition,
-.sorting-condition:nth-of-type(2) .remove-sorting-condition {
+.sorting-condition:first-of-type .remove-sorting-condition {
   visibility: hidden;
 }
 
